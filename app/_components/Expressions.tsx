@@ -4,7 +4,7 @@ import { calculateTime } from "../_utils/calculateTime";
 import type { Expression, Operator } from "../types/expression";
 import { TimeInput } from "./TimeInput";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function Expressions() {
   const [expressions, setExpressions] = useState<Expression[]>([]);
@@ -12,6 +12,16 @@ export function Expressions() {
     time: string;
     minutes: number;
   }>();
+
+  useEffect(() => {
+    window.onbeforeunload = (ev) => {
+      return true;
+    };
+
+    return () => {
+      window.onbeforeunload = null;
+    };
+  }, []);
 
   const addExpression = (operator?: Operator) => {
     // RESET
