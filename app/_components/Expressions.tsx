@@ -17,10 +17,6 @@ export function Expressions() {
     window.onbeforeunload = (ev) => {
       return true;
     };
-
-    return () => {
-      window.onbeforeunload = null;
-    };
   }, []);
 
   const addExpression = (operator?: Operator) => {
